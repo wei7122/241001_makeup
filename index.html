@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- ============== 輪播css ============== -->
+  <link rel="stylesheet" href="https://media.etmall.com.tw/sp/12500/swiper.min.css" />
+  <!-- ============== 共用css ============== -->
+  <link rel="stylesheet" href="https://media.etmall.com.tw/sp/12500/animate.min.css" />
+  <link rel="stylesheet" href="https://media.etmall.com.tw/sp/12500/generate_v1.5.7.css"/>
+  <link rel="stylesheet" href="https://media.etmall.com.tw/sp/12500/build.css" />
+    
+  <!-- [電梯步驟1] 電梯CSS 不用就關掉 -->
+  <!-- 商品左電梯CSS，要使用還要在步驟2開啟左電梯data資料 -->
+  <!-- <link id="localElevatorLeft" rel="stylesheet" href="sp-elevator-left.css"> -->
+
+  <!-- 商品右電梯CSS，步驟2有測試div可以測試 -->
+  <link id="localElevatorRight" rel="stylesheet" href="sp-elevator-right.css" />
+  <!-- [電梯步驟1] 電梯CSS END -->
+
+  <style>
+
+    body {
+      background-color: #f6c157;
+      /* width: 100vw; */
+    }
+
+    body:before {
+      background: url(bg-m.jpg) center 0 no-repeat;
+      background-size: 100%;
+      /* width: 100vw; */
+    }
+
+    @media screen and (min-width: 960px) {
+      body:before {
+        background: url(bg.jpg) center 0 no-repeat;
+        background-size: auto;
+      }
+    }
+    
+    /* 調整logo位置大小 */
+    /* .logo{  
+      top: 1vw;
+      left: 1vw;
+      width: 30%;
+    } */
+
+    /* 調整大網logo */
+    @media screen and (min-width:960px){
+      .logo{  
+        top: 0px;
+        left: calc(50% - 480px);
+        width: 30%;
+        max-width: 220px; 
+      }
+    }
+
+    /* 動畫小物件 */
+    /*-- 手機版：設定物件距離左邊與上邊的位置，單位可以使用"%"或"vw";width:建議電腦版可以使用auto，手機版則可使用%調整 --*/
+    .animate__obj--01 {
+      position: absolute;
+      z-index: 1;
+      top: 12vw;
+      left: 3%;
+      width: 60%;
+      animation: bounceIn 1s both;
+    }
+    .animate__obj--02 {
+      position: absolute;
+      z-index: 1;
+      top: 28vw;
+      left: 5%;
+      width: 55%;
+      animation: bounceIn 1s both;
+      animation-delay: .5s;
+    }
+
+    /*-- 電腦版：設定物件距離左邊與上邊的位置，單位可以使用"px"，左邊可以挑整clac()後面的px值;width:建議電腦版可以使用auto，手機版則可使用%調整 --*/
+    @media screen and (min-width:960px) {
+      .animate__obj--01 {
+        top: 110px;
+        left: calc(50% - 470px);
+        width: auto
+      }
+    }
+    @media screen and (min-width:960px) {
+      .animate__obj--02 {
+        top: 270px;
+        left: calc(50% - 430px);
+        width: auto
+      }
+    }
+
+
+
+    /* --- 滑動Banner start --- */
+    .slider__wrap {
+      /* 輪播的父層 */
+      z-index: 0;
+    }
+
+    .slider__wrap .swipersty__banner {
+      position: absolute;
+      z-index: 0;
+      top: 25%;
+      left: 10%;
+      width: 80%;
+    }
+    /* --- 滑動Banner end --- */
+
+
+
+    /* == 單(雙)連結輪播_第二組 == */
+  .promo__slider--2 {
+    position: absolute;
+    z-index: 1;
+    top: 9.3%;
+    /* 小網左邊距離 */
+    left: 0%;
+    /* 小網圖片寬 */
+    width: 96%;
+    /* 圖片原始尺寸 */
+    overflow: hidden;
+    padding-bottom: 2%;
+  }
+
+  @media screen and (min-width: 960px) {
+    .promo__slider--2 {
+      /* 大網左邊距離 */
+      width: 913px;
+      left: calc(50% - 456px);
+      top: 590px;
+      overflow: visible;
+    }
+  }
+
+  /* 影片+商品區 start */
+
+  /* 此區勿動 */
+  .sp__main li:has(.video-product__wrap) {
+    width: 100%;
+  }
+  .video-product__wrap {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 0;
+    margin-left: auto;
+    margin-right: auto;
+    padding: var(--wrap-padding-mobile);
+    width: 100%;
+    max-width: 960px;
+  }
+  .video-product__item {
+    flex: 0 0 100%
+  }
+  .video-product__video iframe {
+    width: 100%;
+    aspect-ratio: var(--video-aspect-ratio);
+  }
+  .video-product__product {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .video-product__product a {
+    flex: 1 1 100%; 
+  }
+  @media screen and (min-width: 768px) {
+    .video-product__wrap {
+      padding: var(--wrap-padding-web);
+    }
+    .video-product__item {
+      flex: 0 0 100%
+    }
+    .video-product__product a {
+      flex: 1 1 50%; 
+    }
+    .video-product__wrap.shorts .video-product__item {
+      flex: 0 0 50%; 
+    }
+    .video-product__wrap.shorts .video-product__product a {
+      flex: 1 1 100%; 
+    }
+    .video-product__wrap.video--reverse .video-product__item:last-child {
+      order: -1;
+    }
+  }
+
+  /* 調整區 */
+  /* video-product-module-1為分包第一個影片、依此類推 */
+  /* 注意命名編號主視覺與分包不同避免互相覆蓋 */
+  .video-product-module-1 {
+    /* 影片長寬比：調整尾數，大於100是直式，小於100為橫式 */
+    --video-aspect-ratio: 100 / 178;
+
+    /* 整區外框padding */
+    /* 小網 */
+    --wrap-padding-mobile: 0% 4% 6%;
+    /* 大網 */
+    --wrap-padding-web: 0px 0px 30px;
+  }
+  /* 影片+商品區 end */
+
+
+
+   /* == 影片 == */
+   .video__wrap {
+      position: relative;
+      z-index: 2;
+    }
+
+    /*-- 手機版  --*/
+    .video__wrap .video__obj--01 {
+      position: absolute;
+      top: 552vw;
+      left: 2vw;
+      width: 96%;
+      height: 54vw;
+    }
+
+    /*-- 電腦版 --*/
+    @media screen and (min-width: 960px) {
+      .video__wrap .video__obj--01 {
+        top: 5300px;
+        left: calc(50% - 467px);
+        width: 933px;
+        height: 523px;
+      }
+    }
+    
+
+   
+
+
+  </style>
+
+</head>
+
+  <body class="bg-fixed">
+
+    <div class="navRightBar" id="navRightBar"></div>
+    <div class="elevatorHome js--main--dialog" id="elevatorHome"></div>
+    <div id="barHome"></div>
+    <div class="home--icon layout--main" id="iconHome"></div>
+
+    
+    <div class="sp__wrap" id="spWrap">
+
+      <!-- logo -->
+      <div class="logo">
+        <a href="https://www.etmall.com.tw/">
+          <img src="ehs-logo.png" alt="東森購物">
+        </a>
+      </div>
+
+
+      <!-- 影片 -->
+    <div class="video__wrap">
+      <iframe class="video__obj--01" width="560" height="315" src="https://www.youtube.com/embed/NH9f7OUAfCE?si=QVa2eikz973_swfm" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+
+
+       
+      <!-- 動畫小物件 -->
+      <div class="animate__obj--01 animate__animated"><img src="ani_01.png" alt=""></div>
+      <div class="animate__obj--02 animate__animated"><img src="ani_02.png" alt=""></div>
+
+      <!-- 版頭主視覺 -->
+      <main class="sp__main" >
+        <section class="sp__visual">
+          <div class="layout--main">
+            <ul class="visual--auto clearfix">
+              <li class="visual__fragment width--auto"><img src="index_01-1.png" alt=""></li>
+              <!-- <li class="visual__fragment width--auto"><img src="index_01-2.png" alt=""></li> -->
+              <li class="visual__fragment width--auto"><img src="index_02.png" alt=""></li>
+              <li class="visual__fragment width--auto"><img src="index_03.png" alt=""></li>
+              <li class="visual__fragment width--auto"><a href="https://media.etmall.com.tw/sp/29089/m/index.html"><img src="index_04.png" alt=""></a></li>
+              <li class="visual__fragment width--auto"><a href="https://media.etmall.com.tw/sp/19552/m/index.html"><img src="index_05.png" alt=""></a></li>
+              <li class="visual__fragment width--auto"><a href="https://www.etmall.com.tw/Activity/GroupSale"><img src="index_06.png" alt=""></a></li>
+              <li class="visual__fragment width--auto"><a href="https://www.etmall.com.tw/Activity/Reg/220"><img src="index_07.png" alt=""></a></li>
+              <li class="visual__fragment width--auto"><a href="https://media.etmall.com.tw/sp/25456/m/index.html"><img src="index_08.png" alt=""></a></li>
+              <li class="visual__fragment width--auto"><a href="https://media.etmall.com.tw/sp/27376/m/index.html"><img src="index_09.png" alt=""></a></li>
+              <li class="visual__fragment width--auto"><a href="https://www.etmall.com.tw/gp/261972"><img src="index_10.png" alt=""></a></li>
+              <li class="visual__fragment width--auto"><a href="https://www.etmall.com.tw/c2/103719"><img src="index_11.png" alt=""></a></li>
+              <li class="visual__fragment width--auto"><a href="https://media.etmall.com.tw/sp/28476/m/index.html"><img src="index_12.png" alt=""></a></li>
+              <li class="visual__fragment width--auto"><a href="https://media.etmall.com.tw/sp/28896/m/index.html"><img src="index_13.png" alt=""></a></li>
+              <li class="visual__fragment width--auto"><a href="https://line.me/ti/g2/I4U4p5onD9yWdoU2_diCbEXGNmmJdBj0VC_FUA?utm_source=invitation&utm_medium=QR_code&utm_campaign=default"><img src="index_14.png" alt=""></a></li>
+              <li class="visual__fragment width--auto"><img src="index_15.png" alt=""></li>
+              <li class="visual__fragment width--auto"><a href="https://www.etmall.com.tw/c3/47358"><img src="index_16.png" alt=""></a></li>
+              <li class="visual__fragment width--auto"><a href="https://www.etmall.com.tw/c3/47338"><img src="index_17.png" alt=""></a></li>
+              <li class="visual__fragment width--auto"><a href="https://www.etmall.com.tw/c3/47337"><img src="index_18.png" alt=""></a></li>
+              <li class="visual__fragment width--auto"><a href="https://www.etmall.com.tw/c3/74456"><img src="index_19.png" alt=""></a></li>
+              <li class="visual__fragment width--auto"><a href="https://www.etmall.com.tw/c3/47373"><img src="index_20.png" alt=""></a></li>
+              <li class="visual__fragment width--auto"><a href="https://www.etmall.com.tw/c3/39942"><img src="index_21.png" alt=""></a></li>
+              <li class="visual__fragment width--auto"><a href="https://www.etmall.com.tw/c3/178734"><img src="index_22.png" alt=""></a></li>
+              <li class="visual__fragment width--auto"><a href="https://www.etmall.com.tw/c3/47354"><img src="index_23.png" alt=""></a></li>
+              <li class="visual__fragment width--auto"><a href="https://www.etmall.com.tw/c3/47367"><img src="index_24.png" alt=""></a></li>
+              <li class="visual__fragment width--auto"><img src="index_25.png" alt=""></li>
+              <li class="visual__fragment width--auto"><a href="https://www.etmall.com.tw/c3/47353"><img src="index_26.png" alt=""></a></li>
+              <li class="visual__fragment width--auto"><a href="https://www.etmall.com.tw/c3/47351"><img src="index_27.png" alt=""></a></li>
+              <li class="visual__fragment width--auto"><a href="https://www.etmall.com.tw/c3/118160"><img src="index_28.png" alt=""></a></li>
+              <li class="visual__fragment width--auto"><a href="https://www.etmall.com.tw/c3/163482"><img src="index_29.png" alt=""></a></li>
+              <li class="visual__fragment width--auto"><a href="https://www.etmall.com.tw/c3/108565"><img src="index_30.png" alt=""></a></li>
+              <li class="visual__fragment width--auto"><a href="https://www.etmall.com.tw/c3/134734"><img src="index_31.png" alt=""></a></li>
+              <li class="visual__fragment width--auto"><img src="index_34.png" alt=""></li>
+              <li class="visual__fragment width--auto"><a href="https://www.etmall.com.tw/i/7476095"><img src="index_35.png" alt=""></a></li>
+              <li class="visual__fragment width--auto"><a href="https://www.etmall.com.tw/i/7550138"><img src="index_36.png" alt=""></a></li>
+              <li class="visual__fragment width--auto"><img src="index_37.png" alt=""></li>
+              <li class="visual__fragment width--auto"><a href="https://www.etmall.com.tw/Activity/Reg/3900"><img src="index_39.png" alt=""></a></li>
+            </ul>
+
+            <!-- 單(雙)連結輪播_第二組 -->
+        <div class="promo__slider--2">
+          <div class="swiper-container" id="sliderMany2">
+            <ul class="swiper-wrapper">
+              <li class="swiper-slide">
+                <div class="slide__block">
+                  <div class="slide__box">
+                    <a href="https://www.etmall.com.tw/i/7406714">
+                      <img src="1-1.png" alt="">
+                    </a>
+                  </div>
+                  <div class="slide__box">
+                    <a href="https://www.etmall.com.tw/i/3072232">
+                      <img src="1-2.png" alt="">
+                    </a>
+                  </div>
+                </div>
+              </li>
+              <li class="swiper-slide">
+                <div class="slide__block">
+                  <div class="slide__box">
+                    <a href="https://www.etmall.com.tw/i/3066031">
+                      <img src="2-1.png" alt="">
+                    </a>
+                  </div>
+                  <div class="slide__box">
+                    <a href="https://www.etmall.com.tw/i/6618609">
+                      <img src="2-2.png" alt="">
+                    </a>
+                  </div>
+                </div>
+              </li>
+              <li class="swiper-slide">
+                <div class="slide__block">
+                  <div class="slide__box">
+                    <a href="https://www.etmall.com.tw/i/7271046">
+                      <img src="3-1.png" alt="">
+                    </a>
+                  </div>
+                  <div class="slide__box">
+                    <a href="https://www.etmall.com.tw/i/7570415">
+                      <img src="3-2.png" alt="">
+                    </a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- 單(雙)連結輪播_第二組 END -->
+
+
+          </div>
+        </section>
+
+        <section class="slider__wrap">
+          <div class="layout--main">
+            <ul class="visual--auto clearfix">
+              <li class="visual__fragment width--auto"><img src="index_38.png" alt="底圖"></li>
+            </ul>
+            <div class="swipersty__banner">
+              <div class="swiper-container" id="swiperstyBanner">
+                <ul class="swiper-wrapper">
+                  <li class="swiper-slide"><a href="https://media.etmall.com.tw/sp/28476/m/index.html" title=""><img src="slider-bn-1.jpg" alt="MAISON W"></a></li>
+                  <li class="swiper-slide"><a href="https://media.etmall.com.tw/sp/28896/m/index.html" title=""><img src="slider-bn-2.jpg" alt="DEMON"></a></li>
+                  <li class="swiper-slide"><a href="https://media.etmall.com.tw/sp/27376/m/index.html" title=""><img src="slider-bn-3.jpg" alt="ECTV"></a></li>
+                  <li class="swiper-slide"><a href="#" title=""><img src="slider-bn-4.jpg" alt="專櫃活動"></a></li>
+                  <li class="swiper-slide"><a href="#" title=""><img src="slider-bn-5.jpg" alt="品牌活動"></a></li>
+                  <li class="swiper-slide"><a href="#" title=""><img src="slider-bn-6.jpg" alt="品牌活動"></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <section class="sp__visual"></section>
+          <div class="layout--main">
+            <ul class="visual--auto clearfix">
+              <li class="visual__fragment width--auto"><img src="index_32.png" alt=""></li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- 影片+商品區 start -->
+  <!-- video-product-module-1為分包第一個影片、依此類推 -->
+  <!-- 注意命名編號主視覺與分包不同避免互相覆蓋 -->
+  <!-- 有shorts時大網為左右排版，給直影片用，拿掉shorts時大網為上下排版，給橫影片用 -->
+  <!-- 有shorts時如果下video--reverse可以影片在右 -->
+
+  <!-- 直版 -->
+  <div class="video-product__wrap video-product-module-1 shorts">
+    <!-- 橫版 -->
+    <!-- <div class="video-product__wrap video-product-module-1"> -->
+    <!-- 直版、影片在右 -->
+    <!-- <div class="video-product__wrap video-product-module-1 shorts video--reverse"> -->
+  
+  
+      <div class="video-product__item">
+        <div class="video-product__video">
+          <!-- 改網址就好，記得要是embed -->
+          <iframe src="https://youtube.com/embed/CVZzaMYvTz4?si=24gyd8dWKFmRsLDQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+  
+      </div>
+      <div class="video-product__item">
+        <div class="video-product__product">
+          <!-- 一品圖片480*852，兩品圖片480*426 -->
+          <a href="https://www.etmall.com.tw/i/7547291"><img src="p01.png" alt=""></a>
+          <a href="https://www.etmall.com.tw/i/7424785"><img src="p02.png" alt=""></a>
+        </div>
+      </div>
+    </div>
+  <!-- 影片+商品區 end -->
+
+
+      </main>
+    </div>
+
+    
+
+  <!-- ============== 共用JS ============== -->
+  <script src="https://media.etmall.com.tw/sp/12500/jquery-3.6.0.min.js"></script>
+  <script src="https://media.etmall.com.tw/sp/12500/swiper.min.js"></script>
+  <script src="https://media.etmall.com.tw/sp/12500/generate_v1.5.7.js"></script>
+  <!--[電梯步驟2] 電梯 JS -->
+  <!-- 商品左電梯單機版資料，不用就關掉，要使用還要上方步驟1開啟商品左電梯CSS -->
+  <!-- <script id="dataElevatorLeft" src="data-elevator.js"></script> -->
+
+  <!-- 線上自動切換電梯，無論如何都要有 -->
+  <script id="checkElevator" src="https://media.etmall.com.tw/sp/11911/check-elevator.js"></script>
+  <!-- [電梯步驟2] 電梯 JS END -->
+
+  <!-- [測試區] -->
+  <!-- 測試商品右電梯用，上線前必須關掉 -->
+  <!-- <div data-title="ccc"></div> -->
+  <!-- 測試霸道電梯用，開啟時上方自動切換電梯要關閉，這支正式上線時需關閉、上方的要開啟回來 -->
+  <!-- <script id="checkElevator" src="https://media.etmall.com.tw/sp/14841/test-elevator.js?87"></script> -->
+
+ 
+
+
+  <!-- ============== 輪播 start ============== -->
+  <script>
+    var promoSliderItem = new Swiper("#swiperstyBanner", {
+      autoplay: {
+        delay: 2000,
+        disableOnInteraction: false,
+      },
+      grabCursor: true,
+      lazy: {
+        loadPrevNext: true,
+      },
+      loop: true,
+      perspective: true,
+      centeredSlides: true,
+      // effect: "flip",
+      // flipEffect: {
+      //   slideShadows: false,
+      // },
+      slidesPerView: 1,
+      speed: 600,
+      watchSlidesProgress: true,
+      watchSlidesVisibility: true,
+    });
+
+
+    // 單(雙)連結輪播_第二組  
+  var sliderMany = new Swiper("#sliderMany2", {
+    autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+    },  
+    grabCursor: true,
+    loop: true,
+    speed: 1000,
+  });
+  // 單(雙)連結輪播_第二組 end    
+
+
+
+  </script>
+  <!-- ============== 輪播 end ============== -->
+
+      
+
+  
+    
+  </body>
+</html>
